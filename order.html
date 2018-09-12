@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<!--link rel="stylesheet" type="text/css" href="css/style.css"-->
+
+
+	<link rel="stylesheet" href="css/jqueryStyle.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+
+  <style>
+  #project-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 1em;
+  }
+  #project-icon {
+    float: left;
+    height: 32px;
+    width: 32px;
+  }
+  #project-description {
+    margin: 0;
+    padding: 0;
+  }
+  </style>
+  	
+  	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  	<script>
+  	$( function() {
+    $( document ).tooltip();
+ 	 } );
+
+  	$( function() {
+    $( "#accordion" ).accordion();
+  	} );
+
+    $( function() {
+    $( "#datepicker1" ).datepicker();
+    } );
+
+    $( function() {
+    $( "#datepicker2" ).datepicker();
+    } );
+
+   $( function() {
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "fade",
+        duration: 1000
+      }
+    });
+ 
+    $( "#opener" ).on( "click", function() {
+      $( "#dialog" ).dialog( "open" );
+    });
+     } );
+
+    $( function() {
+    var projects = [
+      {
+        value: "jquery",
+        label: "Icot General English",
+        desc: "general english, Icot College",
+        icon: "img/Logo.png"
+      },
+      {
+        value: "jquery-ui",
+        label: "Icot Begginers",
+        desc: "begginers basic course, Icot College",
+        icon: "img/Logo.png"
+      },
+      {
+        value: "sizzlejs",
+        label: "Icot Advanced",
+        desc: "advanced and business course, Icot College",
+        icon: "img/Logo.png"
+      }
+    ];
+ 
+    $( "#project" ).autocomplete({
+      minLength: 0,
+      source: projects,
+      focus: function( event, ui ) {
+        $( "#project" ).val( ui.item.label );
+        return false;
+      },
+      select: function( event, ui ) {
+        $( "#project" ).val( ui.item.label );
+        $( "#project-id" ).val( ui.item.value );
+        $( "#project-description" ).html( ui.item.desc );
+        $( "#project-icon" ).attr( "src", "images/" + ui.item.icon );
+ 
+        return false;
+      }
+    })
+    .autocomplete( "instance" )._renderItem = function( ul, item ) {
+      return $( "<li>" )
+        .append( "<div>" + item.label + "<br>" + item.desc + "</div>" )
+        .appendTo( ul );
+    };
+    } );
+
+
+    function goThere(){
+
+    window.location="ordercomplete.html";
+    }
+  	</script>
+
+
+
+
+</head>
+<body>
+
+	<div id="header">
+	<div>
+	<center>
+		<img src="img/Logo.png" width="350px" height="180px"/>
+	</center>
+	
+	</div>
+	</div>
+	
+	</div>
+
+	<br>
+	<div style="min-height: 1000px; background-color: white; background: rgba(255,255,255, 0.7);">
+
+	<b><h1 style="font-family: 'Calibri'; color: black;"><center><u>Book your course</h1></b></center></u>
+  
+  <div id="project-label"><h3 style="font-family: 'Calibri'; color: black;">
+  Select a course (type "i" for a start):</h3></div>
+  <img id="project-icon" src="img/logo.png" class="ui-state-default" alt="">
+  <input id="project">
+  <input type="hidden" id="project-id">
+  <p id="project-description"></p>
+
+	<br>
+
+
+	
+
+	
+
+	<div id="accordion">
+  <h3>Personal Information</h3>
+  <div>
+    <p>
+    In order to book your course, please provide the personal informations needed.
+    <br><br><br>
+      Name: <input type="text" title="What is your name?" >
+        <br><br>
+        Address: <input type="text" title="What is your address?">
+        <br><br>
+        Phone Number: <input type="text" title="What is your phone number?">
+        <br><br>
+        E-mail: <input type="text" title="What is your e-mail address?">
+        <br><br>
+    Gender: <input type="checkbox"> M <input type="checkbox" >F
+        </p>
+
+  </div>
+  <h3>Booking Information</h3>
+  <div>
+    <p>
+    Please select the date that you would like to start/end the course.
+    <br><br><br>
+
+
+
+
+   
+
+    <p>Starting Date: <input type="text" id="datepicker1"></p>
+    <br><br>
+
+    <p>Ending Date: <input type="text" id="datepicker2"></p>
+    <br><br>
+
+
+    
+
+    </p>
+  </div>
+  <h3>Payment </h3>
+  <div>
+    <b>Choose the way of payment:</b>
+    <br><br>
+  Debit/Credit Card <input type ="checkbox"><img src="img/visa.png"/ float="left" width="50px" height="30px"> &nbsp; <input type ="checkbox"><img src="img/master.png"/ float="left" width="50px" height="30px"> &nbsp;<input type ="checkbox" float="left" width="50px" height="30px"><img src="img/paypal.png"/ float="left" width="50px" height="50px"> 
+<br><br><br>
+    Name on card: <input type ="text" title="Name descripted on the card."> 
+  <br><br>
+
+  Card number: <input type="text" title="Full card number.">
+<br><br>
+   Security Number: <input type="text"  title=" last 3 digits at the back of your card." > 
+  <br><br>
+  Expiring date:<input type="text" title="mm/yy">
+
+  <br><br>
+
+  <div id="dialog" title="Submitted" >
+    <p>Congratulations! Your booking has been placed!
+    <br>We will contact you anytime soon.</p>
+    <button onclick="goThere()">Booking placed</button>
+
+    </div>
+    
+ 
+    <button id="opener" title="Yes, Confirm.">Confirm Booking?</button>
+ 
+
+   
+  </div>
+  
+</div>
+
+	
+
+
+
+	
+
+
+	<div id="footer">
+	<br>
+	<center>Student Name: CARINA LINS / Student Number: 2016308 </center>
+	 <center>&copy;ICOT College 2017</center>
+		
+	</div>
+
+	
+</body>
+</html>
